@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'java-gradle-plugin'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.10'
+}
+
+group 'com.yallage.oceanik'
+version '1.0.0-alpha.1'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+}
+
+dependencies {
+    implementation gradleApi()
+
+    implementation 'org.jetbrains.kotlin:kotlin-stdlib'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+gradlePlugin {
+    plugins {
+        simplePlugin {
+            id = 'com.yallage.oceanik.oceaniko'
+            implementationClass = 'com.yallage.oceanik.oceaniko.Oceaniko'
+        }
+    }
+}
+
+idea {
+    module {
+        downloadSources = true
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
